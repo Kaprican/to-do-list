@@ -1,17 +1,17 @@
+const localStorageTaskList = "tasks";
 
 let allDeleteButtons = document.querySelectorAll(".delete-btn");
 for (let delButton of allDeleteButtons) {
-    addDeleteEventListenerToButton(delButton);
+    delButton.addEventListener("click", deleteTask);
 }
 updateTaskList();
-// localStorage.setItem("tasks", JSON.stringify(["Call mom", "Email Alex", "Clear the dishes"]);
 
 document.getElementById("add-task-button")
     .addEventListener("click", createTaskList);
 
 function createTaskList () {
     const taskName = document.getElementById("input-task");
-    if (!taskName.value) {
+    if (!taskName?.value) {
         return;
     }
 
@@ -21,12 +21,10 @@ function createTaskList () {
 }
 
 function updateTaskList() {
-    let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+    let taskList = JSON.parse(localStorage.getItem(localStorageTaskList)) || [];
 
-    if (taskList) {
-        for (let taskName of taskList) {
-            appendListItemNode(taskName);
-        }
+    for (let taskName of taskList) {
+        appendListItemNode(taskName);
     }
 }
 
@@ -36,14 +34,15 @@ function appendListItemNode (taskName) {
     ul.appendChild(li);
 }
 
-function createTaskForList (taskName) {
+function createTaskForList (taskName, isChecked = false) {
     let checkbox = document.createElement("input");
     checkbox.setAttribute("type", "checkbox");
+    checkbox.checked = isChecked;
 
     let delButton = document.createElement("button");
     delButton.setAttribute("class", "delete-btn");
     delButton.appendChild(document.createTextNode("x"));
-    addDeleteEventListenerToButton(delButton);
+    delButton.addEventListener("click", deleteTask);
 
     let task = document.createElement("span");
     task.setAttribute("class", "task");
@@ -54,12 +53,10 @@ function createTaskForList (taskName) {
     return li;
 }
 
-function addDeleteEventListenerToButton (delButton) {
-    delButton.addEventListener("click", function () {
-        delButton.parentNode.remove();
-        saveTaskListInLocalStorage();
-    });
-};
+function deleteTask() {
+    this.parentNode.remove();
+    saveTaskListInLocalStorage();
+}
 
 function saveTaskListInLocalStorage () {
     const taskList = document.querySelectorAll(".task");
@@ -67,5 +64,5 @@ function saveTaskListInLocalStorage () {
     for (let task of taskList) {
         resultTaskList.push(task.innerHTML);
     }
-    localStorage.setItem("tasks", JSON.stringify(resultTaskList));
+    localStorage.setItem(localStorageTaskList, JSON.stringify(resultTaskList));
 }
