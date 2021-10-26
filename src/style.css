@@ -1,0 +1,42 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    position: relative;
+    top: 100px;
+}
+
+#input-task {
+    width: 20vw;
+    border: none;
+    border-bottom: 2px solid orange;
+}
+
+#add-task-button {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#task-list {
+    list-style: none;
+
+}
+
+.delete-btn {
+    background-color: orangered;
+    border-radius: 100%;
+    border: none;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+}
+
+[type="checkbox"]:checked + span {
+    text-decoration: line-through;
+    opacity: .5;
+}
+
