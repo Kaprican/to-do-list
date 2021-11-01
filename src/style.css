@@ -15,19 +15,19 @@ body {
     border-bottom: 2px solid orange;
 }
 
-#add-task-button {
+button {
     font-family: 'Montserrat', sans-serif;
 }
 
 #task-list {
-    list-style: none;
-
+    list-style: none outside;
+    padding-inline-start: 0px;
 }
 
 .delete-btn {
-    background-color: orangered;
-    border-radius: 100%;
+    background-color: transparent;
     border: none;
+    color: grey;
 }
 
 h1 {
@@ -40,3 +40,13 @@ h1 {
     opacity: .5;
 }
 
+li {
+    display: flex;
+    list-style: none outside;
+    margin: 7px auto;
+}
+
+span {
+    flex-grow: 3;
+    margin-left: 2%;
+}
