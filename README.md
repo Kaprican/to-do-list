@@ -1,5 +1,5 @@
 # To-do list
-v.1.1 
+v.1.2 
 Anastasia Iljushchenko
 
 ## Описание
